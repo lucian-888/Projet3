@@ -1,0 +1,29 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "frontend project3",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenClassrooms-Student-Center/Portfolio-architecte-sophie-bluel.git"
+  },
+  "keywords": [
+    "oc",
+    "project3"
+  ],
+  "author": "Lucian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OpenClassrooms-Student-Center/Portfolio-architecte-sophie-bluel/issues"
+  },
+  "homepage": "https://github.com/OpenClassrooms-Student-Center/Portfolio-architecte-sophie-bluel#readme",
+  "devDependencies": {
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  }
+}
