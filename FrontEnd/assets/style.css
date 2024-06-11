@@ -78,6 +78,7 @@ h1 > span {
 }
 
 h2{
+	
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
@@ -128,7 +129,7 @@ li:hover {
 
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+	
 }
 
 .gallery {
@@ -266,3 +267,98 @@ footer {
     right: 10px;
     font-size: 14px;
 }
+
+#login-success-banner {
+	display: flex;
+	background-color: black;
+	color: white;
+	padding: 10px;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	top:0;
+	left:0;
+	width: 100%; 
+}
+  
+#login-success-banner i {
+	margin-right: 1rem;
+}
+  
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+	max-width: 800px;
+	position: relative;
+  }
+  
+  .close-button {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+  }
+  
+  .close-button:hover,
+  .close-button:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+  }
+  
+
+  #add-photo-view {
+	display: none;
+  }
+  
+  #upload-form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+  }
+  
+  #upload-form input,
+  #upload-form select {
+	padding: 5px;
+  }
+  
+  #validate-button {
+	padding: 10px;
+	background-color: #ccc;
+	color: #333;
+	border: none;
+	cursor: not-allowed;
+  }
+  
+  #validate-button:enabled {
+	background-color: #4caf50;
+	color: white;
+	cursor: pointer;
+  }
+
+  .project-header {
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap:1em;
+  }
+
+  .edit-button {
+	display: flex;
+  }

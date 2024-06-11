@@ -11,9 +11,17 @@
             try {
                 const token = await login(email, password);
                 localStorage.setItem('authToken', token);
-                window.location.href = 'index.html'; // Redirect to the main page
-            } catch (error) {
-                errorMessage.textContent = 'Login failed. Please check your credentials.';
+
+                 // Show the login success banner
+                const loginSuccessBanner = document.getElementById('login-success-banner');
+                if (loginSuccessBanner) {
+                loginSuccessBanner.style.display = 'flex';
+            }
+
+                 window.location.href = 'index.html'; // Redirect to the main page
+                 
+                } catch (error) {
+                errorMessage.textContent = 'Erreur dans l’identifiant ou le mot de passe';
                 console.error('Login error:', error);
             }
         });
@@ -43,3 +51,7 @@ async function login(email, password) {
             throw new Error('Login failed');
         }
 }
+
+
+
+  

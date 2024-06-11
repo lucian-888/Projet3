@@ -8,12 +8,24 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 	<link rel="stylesheet" href="./assets/style.css">
 	<script type="module" src="/index.js" defer></script>
 </head>
-<body>
+<body>	
+
+	<div id="login-success-banner" >
+		<i class="fa-regular fa-pen-to-square fa-lg" style="margin-right: 0.5rem;"></i>
+		<span>Mode édition</span>
+	  </div>
+	  
+	  
+	  
+	  
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+	
 	<nav>
 		<ul>
 			<li>projets</li>
@@ -38,19 +50,29 @@
 
 	<section id="portfolio">
 		
-		<h2>Mes Projets</h2>
-
-		<section id="categories">
-			<ul class="category-menu">
-			<!-- Category menu items will be injected here by JavaScript -->
-			</ul>
-		</section>
-
-		<div class="gallery">
-			<!-- async function fetchWorks() -->
+		<div class="project-header">  
+			<h2>Mes projets</i></h2>
+			<a  href="#" class="edit-button" id="edit-button">  <!--add in CSS   style="display: none;"    for login only-->
+				<i class="fa-regular fa-pen-to-square fa-lg"></i> 
+				modifier
+			</a>
 		</div>
 
+
+  
+		  
+
+	<section id="categories">
+		<ul class="category-menu">
+		<!-- Category menu items will be injected here by JavaScript -->
+		</ul>
 	</section>
+		<div class="gallery">
+		<!-- async function fetchWorks() -->
+		</div>
+	</section>
+
+		
 
 	
 
@@ -69,6 +91,31 @@
 	</section>
 </main>
 
+		<!-- Modale -->
+		<div id="modal" class="modal">
+			<div class="modal-content">
+			  <span class="close-button">&times;</span>
+			  <div id="gallery-view">
+				<div id="works-container"></div>
+				<button id="add-photo-button">Ajouter une photo</button>
+			  </div>
+			  <div id="add-photo-view" style="display: none;">
+				<h2>Ajouter une photo</h2>
+				<form id="upload-form">
+					<label for="">
+				  <input type="file" id="photo-input" accept="image/*" required>
+				  <input type="text" id="title-input" placeholder="Titre" required>
+				  <select id="category-select" required>
+					<option value="" disabled selected>Catégorie</option>
+					<!-- Options pour les catégories seront ajoutées dynamiquement -->
+				  </select>
+				  <button type="submit" id="validate-button" disabled>Valider</button>
+				</label>
+				</form>
+			  </div>
+			</div>
+		  </div>
+
 <footer>
 	<nav>
 		<ul>
@@ -76,6 +123,6 @@
 		</ul>
 	</nav>
 </footer>
-
+<script type="module" src="/index.js"></script>
 </body>
 </html>
