@@ -85,7 +85,6 @@ function setupFiltering(works, categories) {
     if (!token){
         editButton.style.display = "none";
         loginSuccessBanner.style.display = "none";
-
     }
     
    
@@ -135,11 +134,11 @@ function setupFiltering(works, categories) {
   
         const imageElement = document.createElement('img');
         imageElement.src = work.imageUrl;
-        imageElement.alt = work.title;
+        /*imageElement.alt = work.title;*/
         workElement.appendChild(imageElement);
   
         const titleElement = document.createElement('h3');
-        titleElement.textContent = work.title;
+        /*titleElement.textContent = work.title;*/
         workElement.appendChild(titleElement);
   
         worksContainer.appendChild(workElement);

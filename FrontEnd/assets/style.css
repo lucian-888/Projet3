@@ -303,8 +303,16 @@ footer {
 	padding: 20px;
 	border: 1px solid #888;
 	width: 80%;
-	max-width: 800px;
+	max-width: 600px;
+	border-radius: 10px;
 	position: relative;
+  }
+
+  .modal h3 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
   }
   
   .close-button {
@@ -359,6 +367,100 @@ footer {
 	gap:1em;
   }
 
-  .edit-button {
-	display: flex;
+  #edit-button i {
+	margin-right: 0.5rem;
+}
+
+  #works-container {
+	/*display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;*/
+	display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 0.5px;
+	
+
   }
+
+  .work {
+    width: 100%;
+    margin: 15px;
+    text-align: center;
+}
+
+.work img {
+    width: 100%;
+    height: auto;
+    
+	
+}
+
+#add-photo-button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#add-photo-button:hover {
+    background-color: #45a049;
+}
+
+#upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+#photo-input {
+    display: none;
+}
+
+#validate-button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#validate-button:disabled {
+    background-color: #ccc;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem; /* Adjust size as needed */
+    color: #ff0000; /* Red color for delete icon */
+    position: absolute; /* Make sure the parent is positioned */
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    padding: 0;
+}
+
+
+.work {
+    position: relative;
+    display: inline-block;
+    /*margin: 5px;*/
+    text-align: center;
+    width: 60px;
+	height: 40%;
+}
