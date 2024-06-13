@@ -304,8 +304,8 @@ footer {
 	border: 1px solid #888;
 	width: 80%;
 	max-width: 600px;
-	border-radius: 10px;
-	position: relative;
+	border-radius: 8px;
+	/*position: relative;*/
   }
 
   .modal h3 {
@@ -330,8 +330,11 @@ footer {
   }
   
 
-  #add-photo-view {
-	display: none;
+  #gallery-view, #add-photo-view {
+	/*display: none;*/
+	display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   #upload-form {
@@ -437,6 +440,7 @@ footer {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+	width: 15%;
 }
 
 #validate-button:disabled {
@@ -447,11 +451,11 @@ footer {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.5rem; /* Adjust size as needed */
-    color: #ff0000; /* Red color for delete icon */
+    font-size: 0.5rem; /* Adjust size as needed */
+    color: white; /* Red color for delete icon */
     position: absolute; /* Make sure the parent is positioned */
-    top: 10px; /* Adjust as needed */
-    right: 10px; /* Adjust as needed */
+    top: 3px; /* Adjust as needed */
+    right: 3px; /* Adjust as needed */
     padding: 0;
 }
 
@@ -464,3 +468,18 @@ footer {
     width: 60px;
 	height: 40%;
 }
+
+.photo-upload-label {
+    display: block;
+    cursor: pointer;
+    background-color: #ddd;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+#photo-input {
+    display: none;
+}
+

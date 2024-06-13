@@ -91,31 +91,65 @@
 	</section>
 </main>
 
-		<!-- Modale -->
+		<!-- Modale 
 		<div id="modal" class="modal">
 			<div class="modal-content">
-				<h3>Galerie photo</h3>
+				
 			  <span class="close-button">&times;</span>
 			  <div id="gallery-view">
+				<h3>Galerie photo</h3>
 				<div id="works-container"></div>
+				
 				<button id="add-photo-button">Ajouter une photo</button>
 			  </div>
 			  <div id="add-photo-view" style="display: none;">
-				<h2>Ajouter une photo</h2>
+				<h3>Ajout photo</h3>
 				<form id="upload-form">
-					<label for="">
+				  <label for="photo-input" class="photo-upload-label">Ajouter photo</label>
 				  <input type="file" id="photo-input" accept="image/*" required>
 				  <input type="text" id="title-input" placeholder="Titre" required>
 				  <select id="category-select" required>
 					<option value="" disabled selected>Catégorie</option>
-					<!-- Options pour les catégories seront ajoutées dynamiquement -->
 				  </select>
 				  <button type="submit" id="validate-button" disabled>Valider</button>
-				</label>
+				
 				</form>
 			  </div>
 			</div>
-		  </div>
+		</div> -->
+
+
+	<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div id="gallery-view">
+            <h3>Galerie photo</h3>
+            <div id="works-container"></div>
+            <button id="add-photo-button">Ajouter une photo</button>
+        </div>
+        <div id="add-photo-view" style="display: none;">
+            <button class="back-button">&larr;</button>
+            <h3>Ajout photo</h3>
+            <form id="upload-form">
+                <label for="photo-input" class="photo-label">
+                    <input type="file" id="photo-input" accept="image/*" required hidden>
+                    <div class="photo-placeholder">
+                        <span>+ Ajouter photo</span>
+                        <p>jpg, png : 4mo max</p>
+                    </div>
+                </label>
+                <input type="text" id="title-input" placeholder="Titre" required>
+                <select id="category-select" required>
+                    <option value="" disabled selected>Catégorie</option>
+                    <!-- Options pour les catégories seront ajoutées dynamiquement -->
+                </select>
+                <button type="submit" id="validate-button" disabled>Valider</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <footer>
 	<nav>
