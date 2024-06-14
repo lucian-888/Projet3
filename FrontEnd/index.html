@@ -124,6 +124,7 @@
     <div class="modal-content">
         <span class="close-button">&times;</span>
         <div id="gallery-view">
+
             <h3>Galerie photo</h3>
             <div id="works-container"></div>
             <button id="add-photo-button">Ajouter une photo</button>
@@ -132,9 +133,9 @@
             <button class="back-button">&larr;</button>
             <h3>Ajout photo</h3>
             <form id="upload-form">
-                <label for="photo-input" class="photo-label">
+				<label for="photo-input" class="photo-label">
                     <input type="file" id="photo-input" accept="image/*" required hidden>
-                    <div class="photo-placeholder">
+                    <div class="photo-placeholder" id="photo-preview">
                         <span>+ Ajouter photo</span>
                         <p>jpg, png : 4mo max</p>
                     </div>

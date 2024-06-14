@@ -11,6 +11,7 @@ const validateButton = document.getElementById('validate-button');
 const photoInput = document.getElementById('photo-input');
 const titleInput = document.getElementById('title-input');
 const categorySelect = document.getElementById('category-select');
+const photoPreview = document.getElementById('photo-preview');
 const token = localStorage.getItem('authToken');
 
 async function fetchWorks() {
@@ -152,6 +153,7 @@ uploadForm.addEventListener('submit', async (event) => {
             galleryView.style.display = 'block';
             addPhotoView.style.display = 'none';
             uploadForm.reset();
+            resetPhotoPreview();
         } else {
             console.error('Failed to add work:', response.statusText);
         }
@@ -160,8 +162,27 @@ uploadForm.addEventListener('submit', async (event) => {
     }
 });
 
+
+  
+    function previewImage(file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            resetPhotoPreview();
+            photoPreview.appendChild(img);
+            img.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    }
+    
+    function resetPhotoPreview() {
+        photoPreview.innerHTML = '<span>+ Ajouter photo</span><p>jpg, png : 4mo max</p>';
+    }
+
 photoInput.addEventListener('change', () => {
     validateButton.disabled = !photoInput.files.length || !titleInput.value.trim() || !categorySelect.value;
+    previewImage(photoInput.files[0]);
 });
 
 titleInput.addEventListener('input', () => {
