@@ -1,5 +1,7 @@
+// Selecting elements from the DOM
 const loginSuccessBanner = document.getElementById('login-success-banner');
 const editButton = document.getElementById('edit-button');
+const authLink = document.getElementById('auth-link');
 const modal = document.getElementById('modal');
 const closeButton = document.getElementsByClassName('close-button')[0];
 const backButton = document.getElementsByClassName('back-button')[0];
@@ -12,8 +14,9 @@ const photoInput = document.getElementById('photo-input');
 const titleInput = document.getElementById('title-input');
 const categorySelect = document.getElementById('category-select');
 const photoPreview = document.getElementById('photo-preview');
-const token = localStorage.getItem('authToken');
+const token = localStorage.getItem('authToken'); // Retrieve the token from localStorage
 
+// Fetch the list of works from the API
 async function fetchWorks() {
     const response = await fetch("http://localhost:5678/api/works");
     if (!response.ok) {
@@ -22,6 +25,7 @@ async function fetchWorks() {
     return response.json();
 }
 
+// Fetch the list of categories from the API
 async function fetchCategories() {
     const response = await fetch("http://localhost:5678/api/categories");
     if (!response.ok) {
@@ -30,6 +34,18 @@ async function fetchCategories() {
     return response.json();
 }
 
+// Fetch and display works in the gallery
+async function fetchAndDisplayWorks() {
+    try {
+        const works = await fetchWorks();
+        displayWorks(works);
+        modalDisplayWorks(works);
+    } catch (error) {
+        console.error('Error fetching works:', error);
+    }
+}
+
+// Fetch both works and categories, then display them and set up filtering
 try {
     const [works, categories] = await Promise.all([fetchWorks(), fetchCategories()]);
     displayWorks(works);
@@ -39,6 +55,7 @@ try {
     console.error('Error fetching data:', error);
 }
 
+// Display the works in the main gallery
 function displayWorks(works) {
     const galleryContainer = document.querySelector('.gallery');
     galleryContainer.innerHTML = ''; // Clear the gallery before displaying works
@@ -55,6 +72,7 @@ function displayWorks(works) {
     });
 }
 
+// Display the categories in the category menu
 function displayCategories(categories) {
     const categoryMenu = document.querySelector('.category-menu');
     categoryMenu.innerHTML = ''; // Clear the menu before displaying categories
@@ -72,6 +90,7 @@ function displayCategories(categories) {
     });
 }
 
+// Set up filtering functionality based on categories
 function setupFiltering(works, categories) {
     const categoryMenu = document.querySelector('.category-menu');
     categoryMenu.addEventListener('click', (event) => {
@@ -83,34 +102,47 @@ function setupFiltering(works, categories) {
     });
 }
 
-if (!token) {
-    editButton.style.display = "none";
-    loginSuccessBanner.style.display = "none";
+// Check if the user is logged in
+if (token) {
+    // Display edit button and login success banner if logged in
+    editButton.style.display = "block";
+    loginSuccessBanner.style.display = "block";
+    // Change the login link to logout and set up logout functionality
+    authLink.textContent = "logout";
+    authLink.href = "#";
+    authLink.addEventListener('click', () => {
+        localStorage.removeItem('authToken');
+        location.reload();
+    });
 }
 
+// Event listener to open the modal when edit button is clicked
 editButton.addEventListener('click', async () => {
     modal.style.display = 'block';
     galleryView.style.display = 'block';
     addPhotoView.style.display = 'none';
-    const works = await fetchWorks();
-    modaldisplayWorks(works);
+    await fetchAndDisplayWorks();
 });
 
+// Event listener to close the modal
 closeButton.addEventListener('click', () => {
     modal.style.display = 'none';
 });
 
+// Event listener to go back to the gallery view in the modal
 backButton.addEventListener('click', () => {
     galleryView.style.display = 'block';
     addPhotoView.style.display = 'none';
 });
 
+// Event listener to close the modal if the user clicks outside of it
 window.addEventListener('click', (event) => {
     if (event.target === modal) {
         modal.style.display = 'none';
     }
 });
 
+// Event listener to switch to add photo view in the modal
 addPhotoButton.addEventListener('click', async () => {
     galleryView.style.display = 'none';
     addPhotoView.style.display = 'block';
@@ -118,7 +150,7 @@ addPhotoButton.addEventListener('click', async () => {
     populateCategorySelect(categories);
 });
 
-// Function to populate category select
+// Function to populate the category select dropdown
 function populateCategorySelect(categories) {
     categorySelect.innerHTML = '<option value="" disabled selected>Catégorie</option>';
     categories.forEach(category => {
@@ -129,7 +161,7 @@ function populateCategorySelect(categories) {
     });
 }
 
-// Handle form submission
+// Handle form submission for adding a new photo
 uploadForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -148,8 +180,7 @@ uploadForm.addEventListener('submit', async (event) => {
 
         if (response.ok) {
             console.log('Work added successfully');
-            const works = await fetchWorks();
-            modaldisplayWorks(works);
+            await fetchAndDisplayWorks();  // Refresh the gallery
             galleryView.style.display = 'block';
             addPhotoView.style.display = 'none';
             uploadForm.reset();
@@ -162,24 +193,25 @@ uploadForm.addEventListener('submit', async (event) => {
     }
 });
 
-
-  
-    function previewImage(file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            resetPhotoPreview();
-            photoPreview.appendChild(img);
-            img.style.display = 'block';
-        }
-        reader.readAsDataURL(file);
+// Function to preview the selected image
+function previewImage(file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        resetPhotoPreview();
+        photoPreview.appendChild(img);
+        img.style.display = 'block';
     }
-    
-    function resetPhotoPreview() {
-        photoPreview.innerHTML = '<span>+ Ajouter photo</span><p>jpg, png : 4mo max</p>';
-    }
+    reader.readAsDataURL(file);
+}
 
+// Function to reset the photo preview area
+function resetPhotoPreview() {
+    photoPreview.innerHTML = '<span>+ Ajouter photo</span><p>jpg, png : 4mo max</p>';
+}
+
+// Event listeners to enable or disable the validate button based on form inputs
 photoInput.addEventListener('change', () => {
     validateButton.disabled = !photoInput.files.length || !titleInput.value.trim() || !categorySelect.value;
     previewImage(photoInput.files[0]);
@@ -193,6 +225,7 @@ categorySelect.addEventListener('change', () => {
     validateButton.disabled = !photoInput.files.length || !titleInput.value.trim() || !categorySelect.value;
 });
 
+// Function to delete a work
 async function deleteWork(workId) {
     try {
         const response = await fetch(`http://localhost:5678/api/works/${workId}`, {
@@ -204,8 +237,7 @@ async function deleteWork(workId) {
 
         if (response.ok) {
             console.log('Work deleted:', workId);
-            const works = await fetchWorks();
-            modaldisplayWorks(works);
+            await fetchAndDisplayWorks();  // Refresh the gallery
         } else {
             console.error('Failed to delete work:', response.statusText);
         }
@@ -214,7 +246,8 @@ async function deleteWork(workId) {
     }
 }
 
-function modaldisplayWorks(works) {
+// Display works in the modal for management
+function modalDisplayWorks(works) {
     const worksContainer = document.getElementById('works-container');
     worksContainer.innerHTML = '';
 
@@ -236,11 +269,7 @@ function modaldisplayWorks(works) {
     });
 }
 
+// Initial fetch and display of works when the page loads
 document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const works = await fetchWorks();
-        modaldisplayWorks(works);
-    } catch (error) {
-        console.error('Error fetching works:', error);
-    }
+    await fetchAndDisplayWorks();
 });
