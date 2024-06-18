@@ -293,6 +293,8 @@ footer {
     flex-direction: column;
     align-items: center;
     margin-top: 40px;
+    margin-left: 60px;
+    margin-right: 60px;
   }
   
   #upload-form {
@@ -321,20 +323,15 @@ footer {
 }
 
   #works-container {
-	/*display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;*/
 	display: grid;
   grid-template-columns: repeat(5, 1fr);
-  margin-left: 30px;
-  margin-right: 30px;
+  
 	margin-top: 60px;
 
   }
 
   .work {
-    width: 100%;
+    width: 70%;
     margin: 15px;
     text-align: center;
 }
@@ -391,10 +388,11 @@ footer {
   }
 
 #validate-button:disabled {
-    background-color: #ccc;
+    background-color: #818181;
+    color: white;
     width: 200px;
     border-radius: 25px;
-    margin-left: 200px;
+    margin-left: 150px;
 }
 
 
@@ -536,8 +534,15 @@ footer {
 }
 
 .photo-placeholder span {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
+    color: #476586;
+    background-color:  #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .photo-placeholder p {
@@ -575,3 +580,12 @@ button[type="submit"] {
 button[type="submit"]:enabled {
     opacity: 1;
 }
+
+
+.fa-solid.fa-image {
+    font-size: 3rem;
+    color: #d0cece; /* Set the icon color to a specific value */
+    margin-right: 0.5rem; /* Add some spacing between the icon and adjacent content */
+    transform: scale(1.2); /* Scale the icon up by 20% */
+  }
+  

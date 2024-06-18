@@ -152,7 +152,7 @@ addPhotoButton.addEventListener('click', async () => {
 
 // Function to populate the category select dropdown
 function populateCategorySelect(categories) {
-    categorySelect.innerHTML = '<option value="" disabled selected>Catégorie</option>';
+    categorySelect.innerHTML = '<option value="" disabled selected></option>';
     categories.forEach(category => {
         const option = document.createElement('option');
         option.value = category.id;
@@ -208,7 +208,7 @@ function previewImage(file) {
 
 // Function to reset the photo preview area
 function resetPhotoPreview() {
-    photoPreview.innerHTML = '<span>+ Ajouter photo</span><p>jpg, png : 4mo max</p>';
+    photoPreview.innerHTML = '<span>+ Ajouter photo</span><p>jpg, png : 4mo max</p>'; 
 }
 
 // Event listeners to enable or disable the validate button based on form inputs
@@ -273,3 +273,7 @@ function modalDisplayWorks(works) {
 document.addEventListener('DOMContentLoaded', async () => {
     await fetchAndDisplayWorks();
 });
+
+
+
+
