@@ -210,7 +210,7 @@ function previewImage(file) {
 
 // Function to reset the photo preview area
 function resetPhotoPreview() {
-    photoPreview.innerHTML = '<span>+ Ajouter photo</span><p>jpg, png : 4mo max</p>'; 
+    photoPreview.innerHTML = ''; 
 }
 
 // Event listeners to enable or disable the validate button based on form inputs
