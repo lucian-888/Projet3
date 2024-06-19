@@ -112,13 +112,15 @@ if (token) {
     authLink.href = "#";
     authLink.addEventListener('click', () => {
         localStorage.removeItem('authToken');
+        localStorage.setItem('isLoggedIn', 'false');
+
         location.reload();
     });
 }
 
 // Event listener to open the modal when edit button is clicked
 editButton.addEventListener('click', async () => {
-    modal.style.display = 'block';
+    modal.style.display = 'flex';
     galleryView.style.display = 'block';
     addPhotoView.style.display = 'none';
     await fetchAndDisplayWorks();
@@ -261,7 +263,7 @@ function modalDisplayWorks(works) {
 
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delete-button');
-        deleteButton.innerHTML = '🗑';
+        deleteButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
         deleteButton.addEventListener('click', () => deleteWork(work.id));
         workElement.appendChild(deleteButton);
 
@@ -269,10 +271,9 @@ function modalDisplayWorks(works) {
     });
 }
 
-// Initial fetch and display of works when the page loads
-document.addEventListener('DOMContentLoaded', async () => {
-    await fetchAndDisplayWorks();
-});
+
+
+
 
 
 

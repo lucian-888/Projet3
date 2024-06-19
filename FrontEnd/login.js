@@ -28,9 +28,6 @@ if (loginForm) {
                 loginSuccessBanner.style.display = 'flex';
             }
 
-            // Update the login status to reflect the user is logged in
-            updateLoginStatus();
-
             // Redirect to the main page after successful login
             window.location.href = 'index.html';
         } catch (error) {
@@ -63,63 +60,3 @@ async function login(email, password) {
     }
 }
 
-// Event listener to update login status when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    updateLoginStatus();
-});
-
-// Function to update the login status in the navigation
-function updateLoginStatus() {
-    // Select the login link in the navigation
-    const loginLink = document.querySelector('nav ul li a[href="login.html"]');
-
-    // Create a new logout link element
-    const logoutLink = document.createElement('a');
-    logoutLink.href = "#";
-    logoutLink.textContent = "Logout"; /* change with login ??*/
-    logoutLink.addEventListener('click', handleLogout);
-
-    // Check if the user is logged in
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
-    if (isLoggedIn) {
-        if (loginLink) {
-            // Replace the login link with the logout link
-            loginLink.parentNode.insertBefore(logoutLink, loginLink);
-            loginLink.parentNode.removeChild(loginLink);
-        } else {
-            // If login link is not found, append the logout link to the navigation
-            const navUl = document.querySelector('nav ul');
-            const logoutLi = document.createElement('li');
-            logoutLi.appendChild(logoutLink);
-            navUl.appendChild(logoutLi);
-        }
-    } else {
-        if (logoutLink.parentNode) {
-            // Remove the logout link if the user is not logged in
-            logoutLink.parentNode.removeChild(logoutLink);
-        }
-        // Ensure the login link is present in the navigation
-        const navUl = document.querySelector('nav ul');
-        const loginLi = document.createElement('li');
-        const newLoginLink = document.createElement('a');
-        newLoginLink.href = "login.html";
-        newLoginLink.textContent = "login";
-        loginLi.appendChild(newLoginLink);
-        navUl.appendChild(loginLi);
-    }
-}
-
-// Function to handle user logout
-function handleLogout() {
-    // Remove the auth token and set login status to false
-    localStorage.removeItem('authToken');
-    localStorage.setItem('isLoggedIn', 'false');
-    
-
-    // Update the login status in the navigation
-    updateLoginStatus();
-
-    // Redirect to the main page after logout
-    window.location.href = 'index.html';
-}

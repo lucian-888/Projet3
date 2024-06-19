@@ -129,7 +129,6 @@ li:hover {
 
 #portfolio h2 {
 	text-align: center;
-	
 }
 
 .gallery {
@@ -142,7 +141,6 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-
 }
 
 #contact {
@@ -152,7 +150,6 @@ li:hover {
 
 #contact > * {
 	text-align: center;
-
 }
 
 #contact h2{
@@ -236,7 +233,6 @@ footer nav ul {
 }
 
 #login input {
-	
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
@@ -286,51 +282,44 @@ footer {
     margin-left: 700px;
 }
   
-
-  #gallery-view, #add-photo-view {
-	/*display: none;*/
+#gallery-view, #add-photo-view {
 	display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 40px;
     margin-left: 60px;
     margin-right: 60px;
-  }
+}
   
-  #upload-form {
+#upload-form {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-  }
+}
   
-  #upload-form input,
-  #upload-form select {
+#upload-form input,
+#upload-form select {
 	padding: 5px;
-  }
+}
   
- 
-
-  .project-header {
-	
+.project-header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap:1em;
-  }
+}
 
-  #edit-button i {
+#edit-button i {
 	margin-right: 0.5rem;
 }
 
-  #works-container {
+#works-container {
 	display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  
-	margin-top: 60px;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 60px;
+}
 
-  }
-
-  .work {
+.work {
     width: 70%;
     margin: 15px;
     text-align: center;
@@ -339,8 +328,6 @@ footer {
 .work img {
     width: 100%;
     height: auto;
-    
-	
 }
 
 #add-photo-button {
@@ -352,7 +339,6 @@ footer {
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    
 }
 
 #add-photo-button:hover {
@@ -378,14 +364,15 @@ footer {
     display: none;
 }
 
-
- #validate-button:enabled {
+#validate-button:enabled {
+    display: block;
+    margin: 20px auto 0;
 	background-color: #1D6154;
 	color: white;
 	cursor: pointer;
     width: 200px;
     border-radius: 25px;
-  }
+}
 
 #validate-button:disabled {
     background-color: #818181;
@@ -394,7 +381,6 @@ footer {
     border-radius: 25px;
     margin-left: 150px;
 }
-
 
 #validate-button {
     margin-left: 210px;
@@ -405,8 +391,7 @@ footer {
 	border: none;
 	cursor: not-allowed;
     border-radius: 25px;
-  }
-
+}
 
 .delete-button {
     height: 16px;
@@ -422,14 +407,12 @@ footer {
     padding: 1px;
 }
 
-
 .work {
     position: relative;
     display: inline-block;
     /*margin: 5px;*/
     text-align: center;
-    width: 80px;
-	height: 45%;
+    height: 45%;
 }
 
 .photo-upload-label {
@@ -447,17 +430,19 @@ footer {
 }
 
 /* Modal styling */
-
 .modal h3 {
+    font-size:x-large;
+    font-weight: 500;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 20px;
-  }
+}
 
-  
 .modal {
     display: none;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -468,20 +453,14 @@ footer {
     background-color: rgba(0,0,0,0.4);
 }
 
-
-
 .modal-content {
-    
-	background-color: #fefefe;
-	margin: 15% auto;
+    background-color:white;
 	padding: 20px;
 	border: 1px solid #888;
 	width: 80%;
 	max-width: 600px;
 	border-radius: 8px;
-    margin-top: 530px;
-	/*position: relative;*/
-  }
+}
 
 .close-button {
     color: #aaa;
@@ -491,8 +470,6 @@ footer {
     cursor: pointer;
 }
 
-
-
 .close-button:hover,
 .close-button:focus {
     color: black;
@@ -501,16 +478,16 @@ footer {
 }
 
 .back-button {
-    background: none;
+    position: relative;
+    left: -55px;
+    top: -38px;
     border: none;
     font-size: 24px;
     cursor: pointer;
-    position: absolute;
-    top: 10px;
-    left: 10px;
 }
 
 .photo-label {
+    background-color: #eef4fa;
     display: block;
     cursor: pointer;
     margin-bottom: 20px;
@@ -521,7 +498,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px dashed #ccc;
+    border: npne;
     padding: 20px;
     border-radius: 8px;
     position: relative;
@@ -551,7 +528,6 @@ footer {
     color: #777;
 }
 
-
 form {
     display: flex;
     flex-direction: column;
@@ -562,10 +538,11 @@ select {
     margin-bottom: 20px;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 0.001px  #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    height: 30px;
 }
-
+   
 button[type="submit"] {
     padding: 10px;
     font-size: 16px;
@@ -581,11 +558,25 @@ button[type="submit"]:enabled {
     opacity: 1;
 }
 
-
 .fa-solid.fa-image {
     font-size: 3rem;
     color: #d0cece; /* Set the icon color to a specific value */
     margin-right: 0.5rem; /* Add some spacing between the icon and adjacent content */
     transform: scale(1.2); /* Scale the icon up by 20% */
-  }
+}
   
+.separator {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.separator2 {
+    margin-top: -70px;
+    margin-bottom: 70px;
+}
+
+#category-select {
+    margin-bottom: 70px;
+    height: 40px;
+ }
+

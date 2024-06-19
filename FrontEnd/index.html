@@ -10,14 +10,12 @@
     <meta name="description" content="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/style.css">
-    
 </head>
 <body>
     <div id="login-success-banner" style="display: none;">
         <i class="fa-regular fa-pen-to-square fa-lg" style="margin-right: 0.5rem;"></i>
         <span>Mode édition</span>
     </div>
-    
     <header>
         <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
         <nav>
@@ -41,8 +39,7 @@
                 <p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
             </article>
         </section>
-
-        <section id="portfolio">
+		<section id="portfolio">
             <div class="project-header">  
                 <h2>Mes projets</h2>
                 <a href="#" class="edit-button" id="edit-button" style="display: none;">
@@ -50,7 +47,6 @@
                     modifier
                 </a>
             </div>
-            
             <section id="categories">
                 <ul class="category-menu">
                 <!-- Category menu items will be injected here by JavaScript -->
@@ -60,8 +56,7 @@
             <!-- async function fetchWorks() -->
             </div>
         </section>
-
-        <section id="contact">
+		<section id="contact">
             <h2>Contact</h2>
             <p>Vous avez un projet ? Discutons-en !</p>
             <form action="#" method="post">
@@ -75,17 +70,17 @@
             </form>
         </section>
     </main>
-
-    <div id="modal" class="modal">
+	<div id="modal" class="modal">
 		<div class="modal-content">
 			<span class="close-button">&times;</span>
 			<div id="gallery-view">
 				<h3>Galerie photo</h3>
 				<div id="works-container"></div>
+				<hr class="separator">
 				<button id="add-photo-button">Ajouter une photo</button>
 			</div>
-			<div id="add-photo-view" style="display: none;">
-				<button class="back-button">&larr;</button>
+			<div id="add-photo-view" >
+				<div class="back-button"><i class="fa-solid fa-arrow-left"></i></div>
 				<h3>Ajout photo</h3>
 				<form id="upload-form">
 					<label for="photo-input" class="photo-label">
@@ -96,27 +91,22 @@
 							<p>jpg, png : 4mo max</p>
 						</div>
 					</label>
-
-					
 					<label for="title-input">Titre</label>
 					<input type="text" id="title-input"  required>
-
 					<label for="category-select">Catégorie</label>
 					<select id="category-select" required>
 						<option value="" disabled selected></option>
 						<!-- Options pour les catégories seront ajoutées dynamiquement -->
 					</select>
-
-
-
+					
 					<button type="submit" id="validate-button" disabled>Valider</button>
+					
 				</form>
+				<hr class="separator2">
 			</div>
 		</div>
 	</div>
-	
-
-    <footer>
+	<footer>
         <nav>
             <ul>
                 <li>Mentions Légales</li>
