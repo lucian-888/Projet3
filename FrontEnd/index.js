@@ -166,6 +166,17 @@ function populateCategorySelect(categories) {
 // Handle form submission for adding a new photo
 uploadForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    
+        if (titleInput.value.length<2) {
+        const errorMessage = document.getElementById("error-mess")
+        errorMessage.textContent = 'Erreur dans le titre';
+        return
+    }
+
+// Réinitialiser le message d'erreur avant de tenter de soumettre le formulaire
+    const errorMessage = document.getElementById("error-mess");
+    errorMessage.textContent = '';
+   
     const formData = new FormData();
     formData.append('image', photoInput.files[0]);
     formData.append('title', titleInput.value);
@@ -199,19 +210,38 @@ uploadForm.addEventListener('submit', async (event) => {
 function previewImage(file) {
     const reader = new FileReader();
     reader.onload = function (e) {
+        const elements = document.getElementById('photo-preview').children;
+        
+    for(let i=0; i<elements.length; i++) {
+        elements[i].style.display = "none"
+    }
+
         const img = document.createElement('img');
         img.src = e.target.result;
-        resetPhotoPreview();
+        
         photoPreview.appendChild(img);
         img.style.display = 'block';
-    }
+
+        img.classList.add("remove-photo")
+}
+
+
     reader.readAsDataURL(file);
 }
 
 // Function to reset the photo preview area
 function resetPhotoPreview() {
-    photoPreview.innerHTML = ''; 
+    const img = document.querySelector(".remove-photo")
+    img.remove()
+
+    const elements = document.getElementById('photo-preview').children;
+    
+for(let i=0; i<elements.length; i++) {
+    elements[i].style.display = "block"
 }
+}
+
+
 
 // Event listeners to enable or disable the validate button based on form inputs
 photoInput.addEventListener('change', () => {

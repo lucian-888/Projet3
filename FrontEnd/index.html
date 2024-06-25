@@ -82,24 +82,25 @@
 			<div id="add-photo-view" >
 				<div class="back-button"><i class="fa-solid fa-arrow-left"></i></div>
 				<h3>Ajout photo</h3>
-				<form id="upload-form">
-					<label for="photo-input" class="photo-label">
-						<input type="file" id="photo-input" accept="image/*" required hidden>
-						<div class="photo-placeholder" id="photo-preview">
-							<i class="fa-solid fa-image"></i>
-							<span>+ Ajouter photo</span>
-							<p>jpg, png : 4mo max</p>
-						</div>
-					</label>
-					<label for="title-input">Titre</label>
-					<input type="text" id="title-input"  required>
-					<label for="category-select">Catégorie</label>
-					<select id="category-select" required>
-						<option value="" disabled selected></option>
-						<!-- Options pour les catégories seront ajoutées dynamiquement -->
-					</select>
-					<button type="submit" id="validate-button" disabled>Valider</button>
-					</form>
+                    <form id="upload-form">
+                        <label for="photo-input" class="photo-label">
+                            <input type="file" id="photo-input" accept="image/*" required hidden>
+                            <div class="photo-placeholder" id="photo-preview">
+                                <i class="fa-solid fa-image"></i>
+                                <span>+ Ajouter photo</span>
+                                <p>jpg, png : 4mo max</p>
+                            </div>
+                        </label>
+                        <label for="title-input">Titre</label>
+                        <input type="text" id="title-input"  required>
+                        <div id="error-mess"></div> <!-- Message d'erreur pour le titre -->
+                        <label for="category-select">Catégorie</label>
+                        <select id="category-select" required>
+                            <option value="" disabled selected></option>
+                            <!-- Options pour les catégories seront ajoutées dynamiquement -->
+                        </select>
+                        <button type="submit" id="validate-button" disabled>Valider</button>
+                    </form>
 				<hr class="separator2">
 			</div>
 		</div>

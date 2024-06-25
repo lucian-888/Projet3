@@ -61,7 +61,6 @@ header {
 section {
 	margin: 50px 0
 }
-
 h1{
 	display: flex;
 	flex-direction: column;
@@ -70,13 +69,11 @@ h1{
 	font-weight: 800;
 	color: #B1663C
 }
-
 h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
 }
-
 h2{
 	
 	font-family: 'Syne';
@@ -84,53 +81,42 @@ h2{
 	font-size: 30px;
 	color: #1D6154
 }
-
 nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
 }
-
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
-
 li:hover {
 	color: #B1663C;
 }
-
 #introduction {
 	display: flex;
 	align-items: center;
 }
-
 #introduction figure {
 	flex: 1
 }
-
 #introduction img {
 	display: block;
 	margin: auto;
 	width: 80%;
 }
-
 #introduction article {
 	flex: 1
 }
-
 #introduction h2 {
 	margin-bottom: 1em;
 }
-
 #introduction p {
 	margin-bottom: 0.5em;
 }
-
 #portfolio h2 {
 	text-align: center;
 }
-
 .gallery {
 	width: 100%;
 	display: grid;
@@ -138,47 +124,38 @@ li:hover {
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 }
-
 .gallery img {
 	width: 100%;
 }
-
 #contact {
 	width: 50%;
 	margin: auto;
 }
-
 #contact > * {
 	text-align: center;
 }
-
 #contact h2{
 	margin-bottom: 20px;
 }
-
 #contact form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
-
 #contact input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-
 #contact label {
 	margin: 2em 0 1em 0;
 }
-
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-
 input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
@@ -189,19 +166,16 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
-
 footer nav ul {
 	display: flex;
 	margin: 2em
 }
-
 .category-menu {
 	text-align: center;
     list-style: none;
     padding: 0;
     margin: 0;
 }
-
 .category-menu li {
 	display: inline-block; /* Display list items inline */
     margin-right: 10px; /* Add some spacing between items */
@@ -213,12 +187,10 @@ footer nav ul {
     cursor: pointer; /* Change cursor to a pointer on hover */
     transition: background-color 0.3s, color 0.3s; /* Add a smooth transition effect */
 }
-
 .category-menu li:hover {
     background-color:  #1D6154; /* Change background color on hover */
     color: white; /* Change text color on hover */
 }
-
 #login form {
 	text-align: left;
 	margin-top:30px;
@@ -226,36 +198,29 @@ footer nav ul {
 	flex-direction: column;
 	gap: 10px;
 }
-
 #login h2 {
 	align-content: center;
 	margin-bottom: 10px;
 }
-
 #login input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-
 #login {
 	width: 50%;
 	margin: auto;
 }
-
 #login > * {
 	text-align: center;
 }
-
 .error-message {
 	margin-bottom: 250px;
 }
-
 footer {
     position: relative;
 }
-
 .legal-mention {
     position: absolute;
 	top: 180px;
@@ -263,7 +228,6 @@ footer {
     right: 10px;
     font-size: 14px;
 }
-
 #login-success-banner {
 	display: flex;
     align-items: center; 
@@ -276,13 +240,11 @@ footer {
 	left:0;
 	width: 100%; 
 }
-  
-#login-success-banner i {
+  #login-success-banner i {
 	margin-right: 1rem;
     margin-left: 700px;
 }
-  
-#gallery-view, #add-photo-view {
+  #gallery-view, #add-photo-view {
 	display: flex;
     flex-direction: column;
     align-items: center;
@@ -290,46 +252,38 @@ footer {
     margin-left: 60px;
     margin-right: 60px;
 }
-  
-#upload-form {
+  #upload-form {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
-  
 #upload-form input,
 #upload-form select {
 	padding: 5px;
 }
-  
 .project-header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap:1em;
 }
-
 #edit-button i {
 	margin-right: 0.5rem;
 }
-
 #works-container {
 	display: grid;
     grid-template-columns: repeat(5, 1fr);
     margin-top: 60px;
 }
-
 .work {
     width: 70%;
     margin: 15px;
     text-align: center;
 }
-
 .work img {
     width: 100%;
     height: auto;
 }
-
 #add-photo-button {
     display: block;
     margin: 20px auto 0;
@@ -340,17 +294,14 @@ footer {
     border-radius: 25px;
     cursor: pointer;
 }
-
 #add-photo-button:hover {
     background-color: #1D6154;
 }
-
 #upload-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-
 .file-label {
     display: inline-block;
     padding: 10px;
@@ -359,11 +310,9 @@ footer {
     color: white;
     border-radius: 5px;
 }
-
 #photo-input {
     display: none;
 }
-
 #validate-button:enabled {
     display: block;
     margin: 20px auto 0;
@@ -373,7 +322,6 @@ footer {
     width: 200px;
     border-radius: 25px;
 }
-
 #validate-button:disabled {
     background-color: #818181;
     color: white;
@@ -381,7 +329,6 @@ footer {
     border-radius: 25px;
     margin-left: 150px;
 }
-
 #validate-button {
     margin-left: 210px;
     width: 210px;
@@ -392,7 +339,6 @@ footer {
 	cursor: not-allowed;
     border-radius: 25px;
 }
-
 .delete-button {
     height: 16px;
     width: 16px;
@@ -406,7 +352,6 @@ footer {
     right: 3px; /* Adjust as needed */
     padding: 1px;
 }
-
 .work {
     position: relative;
     display: inline-block;
@@ -414,7 +359,6 @@ footer {
     text-align: center;
     height: 45%;
 }
-
 .photo-upload-label {
     display: block;
     cursor: pointer;
@@ -424,11 +368,9 @@ footer {
     border-radius: 4px;
     margin-bottom: 10px;
 }
-
 #photo-input {
     display: none;
 }
-
 /* Modal styling */
 .modal h3 {
     font-size:x-large;
@@ -438,7 +380,6 @@ footer {
 	justify-content: center;
 	margin-bottom: 20px;
 }
-
 .modal {
     display: none;
     justify-content: center;
@@ -452,7 +393,6 @@ footer {
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
 }
-
 .modal-content {
     background-color:white;
 	padding: 20px;
@@ -461,7 +401,6 @@ footer {
 	max-width: 600px;
 	border-radius: 8px;
 }
-
 .close-button {
     color: #aaa;
     float: right;
@@ -469,14 +408,12 @@ footer {
     font-weight: bold;
     cursor: pointer;
 }
-
 .close-button:hover,
 .close-button:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
-
 .back-button {
     position: relative;
     left: -55px;
@@ -485,7 +422,6 @@ footer {
     font-size: 24px;
     cursor: pointer;
 }
-
 .photo-label {
     background-color: #eef4fa;
     display: block;
@@ -493,23 +429,19 @@ footer {
     margin-bottom: 20px;
     text-align: center;
 }
-
 .photo-placeholder {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: npne;
-    padding: 20px;
+    border: none;
     border-radius: 8px;
     position: relative;
 }
-
 .photo-placeholder img {
     max-width: 100%;
     max-height: 150px;
     display: none; /* Hide image initially */
 }
-
 .photo-placeholder span {
     font-size: 16px;
     font-weight: bold;
@@ -521,18 +453,15 @@ footer {
     padding-left: 30px;
     padding-right: 30px;
 }
-
 .photo-placeholder p {
-    margin: 5px 0 0 0;
+    margin: 5px 0 20px 0;
     font-size: 12px;
     color: #777;
 }
-
 form {
     display: flex;
     flex-direction: column;
 }
-
 input[type="text"],
 select {
     margin-bottom: 20px;
@@ -542,7 +471,6 @@ select {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     height: 30px;
 }
-   
 button[type="submit"] {
     padding: 10px;
     font-size: 16px;
@@ -553,30 +481,31 @@ button[type="submit"] {
     cursor: pointer;
     opacity: 0.5;
 }
-
 button[type="submit"]:enabled {
     opacity: 1;
 }
-
 .fa-solid.fa-image {
+    margin-top: 20px;
     font-size: 3rem;
     color: #d0cece; /* Set the icon color to a specific value */
     margin-right: 0.5rem; /* Add some spacing between the icon and adjacent content */
     transform: scale(1.2); /* Scale the icon up by 20% */
 }
-  
 .separator {
     margin-top: 40px;
     margin-bottom: 30px;
 }
-
 .separator2 {
     margin-top: -70px;
     margin-bottom: 70px;
 }
-
 #category-select {
     margin-bottom: 70px;
     height: 40px;
  }
-
+#error-mess {
+    color: red;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    margin-top: -20px;
+}
