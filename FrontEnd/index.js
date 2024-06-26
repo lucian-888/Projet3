@@ -1,4 +1,4 @@
-// Selecting elements from the DOM
+// Sélection des éléments du DOM
 const loginSuccessBanner = document.getElementById('login-success-banner');
 const editButton = document.getElementById('edit-button');
 const authLink = document.getElementById('auth-link');
@@ -14,9 +14,11 @@ const photoInput = document.getElementById('photo-input');
 const titleInput = document.getElementById('title-input');
 const categorySelect = document.getElementById('category-select');
 const photoPreview = document.getElementById('photo-preview');
-const token = localStorage.getItem('authToken'); // Retrieve the token from localStorage
+const responseMessageAdd = document.getElementById('responseMessageAdd');
+const responseMessageGallery = document.getElementById('responseMessageGallery');
+const token = localStorage.getItem('authToken'); // Récupérer le jeton depuis le localStorage
 
-// Fetch the list of works from the API
+// Fonction pour récupérer la liste des œuvres depuis l'API
 async function fetchWorks() {
     const response = await fetch("http://localhost:5678/api/works");
     if (!response.ok) {
@@ -25,7 +27,7 @@ async function fetchWorks() {
     return response.json();
 }
 
-// Fetch the list of categories from the API
+// Fonction pour récupérer la liste des catégories depuis l'API
 async function fetchCategories() {
     const response = await fetch("http://localhost:5678/api/categories");
     if (!response.ok) {
@@ -34,31 +36,33 @@ async function fetchCategories() {
     return response.json();
 }
 
-// Fetch and display works in the gallery
+// Fonction pour récupérer et afficher les œuvres dans la galerie
 async function fetchAndDisplayWorks() {
     try {
         const works = await fetchWorks();
         displayWorks(works);
         modalDisplayWorks(works);
     } catch (error) {
-        console.error('Error fetching works:', error);
+        console.error('Erreur lors de la récupération des œuvres:', error);
     }
 }
 
-// Fetch both works and categories, then display them and set up filtering
-try {
-    const [works, categories] = await Promise.all([fetchWorks(), fetchCategories()]);
-    displayWorks(works);
-    displayCategories(categories);
-    setupFiltering(works, categories);
-} catch (error) {
-    console.error('Error fetching data:', error);
-}
+// Récupérer à la fois les œuvres et les catégories, puis les afficher et configurer le filtrage
+(async function init() {
+    try {
+        const [works, categories] = await Promise.all([fetchWorks(), fetchCategories()]);
+        displayWorks(works);
+        displayCategories(categories);
+        setupFiltering(works, categories);
+    } catch (error) {
+        console.error('Erreur lors de la récupération des données:', error);
+    }
+})();
 
-// Display the works in the main gallery
+// Fonction pour afficher les œuvres dans la galerie principale
 function displayWorks(works) {
     const galleryContainer = document.querySelector('.gallery');
-    galleryContainer.innerHTML = ''; // Clear the gallery before displaying works
+    galleryContainer.innerHTML = ''; // Vider la galerie avant d'afficher les œuvres
     works.forEach(work => {
         const figure = document.createElement('figure');
         const img = document.createElement('img');
@@ -72,10 +76,10 @@ function displayWorks(works) {
     });
 }
 
-// Display the categories in the category menu
+// Fonction pour afficher les catégories dans le menu des catégories
 function displayCategories(categories) {
     const categoryMenu = document.querySelector('.category-menu');
-    categoryMenu.innerHTML = ''; // Clear the menu before displaying categories
+    categoryMenu.innerHTML = ''; // Vider le menu avant d'afficher les catégories
 
     const allItem = document.createElement('li');
     allItem.textContent = 'Tous';
@@ -90,7 +94,7 @@ function displayCategories(categories) {
     });
 }
 
-// Set up filtering functionality based on categories
+// Fonction pour configurer la fonctionnalité de filtrage en fonction des catégories
 function setupFiltering(works, categories) {
     const categoryMenu = document.querySelector('.category-menu');
     categoryMenu.addEventListener('click', (event) => {
@@ -102,12 +106,12 @@ function setupFiltering(works, categories) {
     });
 }
 
-// Check if the user is logged in
+// Vérifier si l'utilisateur est connecté
 if (token) {
-    // Display edit button and login success banner if logged in
+    // Afficher le bouton d'édition et la bannière de connexion réussie si connecté
     editButton.style.display = "block";
     loginSuccessBanner.style.display = "block";
-    // Change the login link to logout and set up logout functionality
+    // Changer le lien de connexion en déconnexion et configurer la fonctionnalité de déconnexion
     authLink.textContent = "logout";
     authLink.href = "#";
     authLink.addEventListener('click', () => {
@@ -118,41 +122,44 @@ if (token) {
     });
 }
 
-// Event listener to open the modal when edit button is clicked
+// Écouteur d'événement pour ouvrir le modal lorsque le bouton d'édition est cliqué
 editButton.addEventListener('click', async () => {
     modal.style.display = 'flex';
     galleryView.style.display = 'block';
     addPhotoView.style.display = 'none';
     await fetchAndDisplayWorks();
+    resetResponseMessages(); // Réinitialiser les messages de réponse
 });
 
-// Event listener to close the modal
+// Écouteur d'événement pour fermer le modal
 closeButton.addEventListener('click', () => {
     modal.style.display = 'none';
 });
 
-// Event listener to go back to the gallery view in the modal
+// Écouteur d'événement pour retourner à la vue de la galerie dans le modal
 backButton.addEventListener('click', () => {
     galleryView.style.display = 'block';
     addPhotoView.style.display = 'none';
+    resetResponseMessages(); // Réinitialiser les messages de réponse
 });
 
-// Event listener to close the modal if the user clicks outside of it
+// Écouteur d'événement pour fermer le modal si l'utilisateur clique à l'extérieur
 window.addEventListener('click', (event) => {
     if (event.target === modal) {
         modal.style.display = 'none';
     }
 });
 
-// Event listener to switch to add photo view in the modal
+// Écouteur d'événement pour passer à la vue d'ajout de photo dans le modal
 addPhotoButton.addEventListener('click', async () => {
     galleryView.style.display = 'none';
     addPhotoView.style.display = 'block';
     const categories = await fetchCategories();
     populateCategorySelect(categories);
+    resetResponseMessages(); // Réinitialiser les messages de réponse
 });
 
-// Function to populate the category select dropdown
+// Fonction pour remplir le menu déroulant des catégories
 function populateCategorySelect(categories) {
     categorySelect.innerHTML = '<option value="" disabled selected></option>';
     categories.forEach(category => {
@@ -163,27 +170,28 @@ function populateCategorySelect(categories) {
     });
 }
 
-// Handle form submission for adding a new photo
+// Gérer la soumission du formulaire pour ajouter une nouvelle photo
 uploadForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    
-        if (titleInput.value.length<2) {
-        const errorMessage = document.getElementById("error-mess")
+
+    // Valider le titre
+    if (titleInput.value.length < 2) {
+        const errorMessage = document.getElementById("error-mess");
         errorMessage.textContent = 'Erreur dans le titre';
-        return
+        return;
     }
 
-// Réinitialiser le message d'erreur avant de tenter de soumettre le formulaire
+    // Réinitialiser le message d'erreur avant de tenter de soumettre le formulaire
     const errorMessage = document.getElementById("error-mess");
     errorMessage.textContent = '';
-   
+
     const formData = new FormData();
     formData.append('image', photoInput.files[0]);
     formData.append('title', titleInput.value);
     formData.append('category', categorySelect.value);
 
     try {
-        const response = await fetch('http://localhost:5678/api/works', {
+        const response = await fetch("http://localhost:5678/api/works", {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -192,58 +200,59 @@ uploadForm.addEventListener('submit', async (event) => {
         });
 
         if (response.ok) {
-            console.log('Work added successfully');
-            await fetchAndDisplayWorks();  // Refresh the gallery
-            galleryView.style.display = 'block';
-            addPhotoView.style.display = 'none';
+            responseMessageAdd.innerText = 'Œuvre ajoutée avec succès';
+            responseMessageAdd.style.color = 'green';
             uploadForm.reset();
             resetPhotoPreview();
+            validateButton.disabled = true;
+            await fetchAndDisplayWorks(); // Rafraîchir la galerie
         } else {
-            console.error('Failed to add work:', response.statusText);
+            const data = await response.json();
+            responseMessageAdd.innerText = 'Erreur: ' + (data.message || response.statusText);
+            responseMessageAdd.style.color = 'red';
         }
     } catch (error) {
-        console.error('Error adding work:', error);
+        responseMessageAdd.innerText = 'Erreur lors de l\'ajout de l\'œuvre: ' + error.message;
+        responseMessageAdd.style.color = 'red';
     }
 });
 
-// Function to preview the selected image
+// Fonction pour prévisualiser l'image sélectionnée
 function previewImage(file) {
     const reader = new FileReader();
     reader.onload = function (e) {
         const elements = document.getElementById('photo-preview').children;
-        
-    for(let i=0; i<elements.length; i++) {
-        elements[i].style.display = "none"
-    }
+
+        // Masquer les éléments de prévisualisation actuels
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].style.display = "none";
+        }
 
         const img = document.createElement('img');
         img.src = e.target.result;
-        
+
         photoPreview.appendChild(img);
         img.style.display = 'block';
-
-        img.classList.add("remove-photo")
-}
-
+        img.classList.add("remove-photo");
+    };
 
     reader.readAsDataURL(file);
 }
 
-// Function to reset the photo preview area
+// Fonction pour réinitialiser la zone de prévisualisation de la photo
 function resetPhotoPreview() {
-    const img = document.querySelector(".remove-photo")
-    img.remove()
+    const img = document.querySelector(".remove-photo");
+    if (img) img.remove();
 
     const elements = document.getElementById('photo-preview').children;
-    
-for(let i=0; i<elements.length; i++) {
-    elements[i].style.display = "block"
+
+    // Afficher les éléments par défaut
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = "block";
+    }
 }
-}
 
-
-
-// Event listeners to enable or disable the validate button based on form inputs
+// Écouteurs d'événements pour activer ou désactiver le bouton de validation en fonction des entrées du formulaire
 photoInput.addEventListener('change', () => {
     validateButton.disabled = !photoInput.files.length || !titleInput.value.trim() || !categorySelect.value;
     previewImage(photoInput.files[0]);
@@ -257,7 +266,7 @@ categorySelect.addEventListener('change', () => {
     validateButton.disabled = !photoInput.files.length || !titleInput.value.trim() || !categorySelect.value;
 });
 
-// Function to delete a work
+// Fonction pour supprimer une œuvre
 async function deleteWork(workId) {
     try {
         const response = await fetch(`http://localhost:5678/api/works/${workId}`, {
@@ -268,17 +277,21 @@ async function deleteWork(workId) {
         });
 
         if (response.ok) {
-            console.log('Work deleted:', workId);
-            await fetchAndDisplayWorks();  // Refresh the gallery
+            responseMessageGallery.innerText = 'Œuvre supprimée avec succès';
+            responseMessageGallery.style.color = 'green';
+            await fetchAndDisplayWorks();  // Rafraîchir la galerie
         } else {
-            console.error('Failed to delete work:', response.statusText);
+            const data = await response.json();
+            responseMessageGallery.innerText = 'Erreur: ' + (data.message || response.statusText);
+            responseMessageGallery.style.color = 'red';
         }
     } catch (error) {
-        console.error('Error deleting work:', error);
+        responseMessageGallery.innerText = 'Erreur lors de la suppression de l\'œuvre: ' + error.message;
+        responseMessageGallery.style.color = 'red';
     }
 }
 
-// Display works in the modal for management
+// Afficher les œuvres dans le modal pour la gestion
 function modalDisplayWorks(works) {
     const worksContainer = document.getElementById('works-container');
     worksContainer.innerHTML = '';
@@ -301,10 +314,8 @@ function modalDisplayWorks(works) {
     });
 }
 
-
-
-
-
-
-
-
+// Fonction pour réinitialiser les messages de réponse
+function resetResponseMessages() {
+    responseMessageAdd.innerText = '';
+    responseMessageGallery.innerText = '';
+}
